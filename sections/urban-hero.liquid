@@ -1,0 +1,48 @@
+<section class="pt-40 pb-20 px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid lg:grid-cols-2 gap-20 items-center">
+      <div>
+        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-bold mb-8 italic">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m13 2-2 10h9L7 21l2-10H2l11-10z"/></svg>
+          <span>{{ section.settings.badge_text }}</span>
+        </div>
+        <h1 class="text-6xl md:text-[8rem] font-black leading-[0.8] tracking-tighter mb-12 italic uppercase">
+          {{ section.settings.heading_part1 }} <br /> <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-500">{{ section.settings.heading_part2 }}</span>
+        </h1>
+        <p class="text-xl text-neutral-500 max-w-lg mb-12 leading-relaxed italic">
+          {{ section.settings.description }}
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="{{ section.settings.button_link }}" class="px-10 py-5 bg-white text-black font-black flex items-center space-x-3 hover:bg-indigo-600 hover:text-white transition-all transform hover:-translate-y-1 rounded-sm uppercase italic tracking-tighter">
+            <span>{{ section.settings.button_text }}</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14l-7-7m7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="relative group perspective-1000">
+         <div class="absolute -inset-4 bg-indigo-500/10 rounded-xl blur-3xl group-hover:bg-indigo-500/20 transition-all duration-1000"></div>
+         {% if section.settings.image != blank %}
+           <img src="{{ section.settings.image | img_url: '1200x' }}" alt="{{ section.settings.image.alt | escape }}" class="relative rounded-sm grayscale group-hover:grayscale-0 transition-all duration-1000 border border-neutral-800/50 shadow-2xl rotate-2 group-hover:rotate-0">
+         {% else %}
+           <div class="relative bg-neutral-900 border border-neutral-800 h-[500px] w-full flex items-center justify-center font-bold tracking-tighter text-neutral-800 italic uppercase rotate-2 group-hover:rotate-0 transition-all duration-1000">No Image Uploaded</div>
+         {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Urban Hero",
+  "settings": [
+    { "type": "text", "id": "badge_text", "label": "Badge Text", "default": "URBAN DESIGN INFRASTRUCTURE" },
+    { "type": "text", "id": "heading_part1", "label": "Heading Part 1", "default": "DESIGN" },
+    { "type": "text", "id": "heading_part2", "label": "Heading Part 2", "default": "SYSTEMS." },
+    { "type": "textarea", "id": "description", "label": "Description", "default": "Premium UI kits, urban textures, and digital product assets curated for professionals. Elevate your creative workflow." },
+    { "type": "text", "id": "button_text", "label": "Button Text", "default": "SHOP COLLECTIONS" },
+    { "type": "url", "id": "button_link", "label": "Button Link" },
+    { "type": "image_picker", "id": "image", "label": "Hero Image" }
+  ],
+  "presets": [{ "name": "Urban Hero" }]
+}
+{% endschema %}

@@ -1,0 +1,19 @@
+<section class="bg-neutral-900/50 border-y border-neutral-800 py-16 overflow-hidden">
+  <div class="animate-marquee whitespace-nowrap flex space-x-12 items-center opacity-30">
+    {% for i in (1..6) %}
+      <span class="text-4xl font-black italic uppercase tracking-tighter">UI DESIGN</span>
+      <span class="w-3 h-3 rounded-full bg-indigo-600"></span>
+      <span class="text-4xl font-black italic uppercase tracking-tighter">DIGITAL IMAGING</span>
+      <span class="w-3 h-3 rounded-full bg-indigo-600"></span>
+      <span class="text-4xl font-black italic uppercase tracking-tighter">PRODUCT STRATEGY</span>
+      <span class="w-3 h-3 rounded-full bg-indigo-600"></span>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Design Marquee",
+  "presets": [{ "name": "Design Marquee" }]
+}
+{% endschema %}

@@ -1,0 +1,25 @@
+{
+  "sections": {
+    "main-hero": {
+      "type": "urban-hero",
+      "settings": {
+        "badge_text": "URBAN DESIGN INFRASTRUCTURE",
+        "heading_part1": "DESIGN",
+        "heading_part2": "SYSTEMS.",
+        "description": "Premium UI kits, urban textures, and digital product assets curated for professionals. Elevate your creative workflow.",
+        "button_text": "SHOP COLLECTIONS"
+      }
+    },
+    "marquee": {
+      "type": "marquee"
+    },
+    "featured-products": {
+      "type": "featured-products",
+      "settings": {
+        "title": "The Vault.",
+        "description": "Direct feed from our Shopify ecosystem. These assets are battle-tested in high-stakes urban design projects."
+      }
+    }
+  },
+  "order": ["main-hero", "marquee", "featured-products"]
+}

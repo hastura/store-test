@@ -1,0 +1,52 @@
+<section class="py-32 px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
+      <div class="max-w-xl">
+        <h2 class="text-5xl md:text-7xl font-black tracking-tighter mb-6 uppercase italic">{{ section.settings.title }}</h2>
+        <p class="text-neutral-500 leading-relaxed italic">{{ section.settings.description }}</p>
+      </div>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-12">
+      {% for product in collections[section.settings.collection].products limit: section.settings.product_limit %}
+        <div class="group flex flex-col h-full bg-neutral-900/10 hover:bg-neutral-900/30 p-4 transition-all border border-neutral-900 hover:border-indigo-500/30 rounded-sm">
+          <div class="aspect-[4/5] bg-neutral-950 overflow-hidden relative mb-8">
+            <img 
+              src="{{ product.featured_image | img_url: '800x' }}" 
+              alt="{{ product.title }}"
+              class="w-full h-full object-cover grayscale brightness-50 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700"
+            />
+            <div class="absolute bottom-6 left-6 right-6 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500">
+              <form action="/cart/add" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+                <button type="submit" class="w-full py-4 bg-indigo-600 text-white font-black italic uppercase tracking-tighter rounded-sm shadow-2xl">
+                   Add to Vault
+                </button>
+              </form>
+            </div>
+          </div>
+          <div class="space-y-4">
+            <div class="flex justify-between items-start">
+              <h3 class="text-lg font-black italic uppercase tracking-tighter line-clamp-1">{{ product.title }}</h3>
+              <span class="text-xl font-black text-indigo-500">{{ product.price | money }}</span>
+            </div>
+            <p class="text-neutral-500 text-xs italic line-clamp-2 leading-relaxed">{{ product.description | strip_html | truncate: 120 }}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured Products",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Title", "default": "The Vault." },
+    { "type": "textarea", "id": "description", "label": "Description", "default": "Direct feed from our Shopify ecosystem. These assets are battle-tested in high-stakes urban design projects." },
+    { "type": "collection", "id": "collection", "label": "Collection" },
+    { "type": "number", "id": "product_limit", "label": "Product Limit", "default": 6 }
+  ],
+  "presets": [{ "name": "Featured Products" }]
+}
+{% endschema %}
